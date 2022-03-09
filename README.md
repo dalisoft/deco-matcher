@@ -20,12 +20,12 @@ deno run ./src/deco-compare.ts
 You can try modify these files
 
 - `constants.ts`
-- `decoes.ts`
+- `decos.ts`
 
 ## Desired (example) result
 
-As default (main / 100%) result we choosed "Deco M4" and desired result
-could as below
+As default (main / 100%) result we choosed "Deco M4" and maxium ISP speed
+at 1.000 Mbps, so desired result will be as below
 
 ```md
 ┌───────┬──────────────┬──────────────────┬─────────────────┬────────────────────────────────────┐
