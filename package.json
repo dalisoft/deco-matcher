@@ -1,0 +1,6 @@
+{
+  "main": "src/deco-compare.ts",
+  "scripts": {
+    "start": "deno run ./src/deco-compare.ts"
+  }
+}
