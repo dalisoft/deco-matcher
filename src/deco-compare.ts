@@ -17,22 +17,19 @@ const decosDescribed = decos.reduce((allDecos, deco) => {
     features: Object.values(features).reduce(sum, 0),
   };
 
-  const raw: IRaw = {
+  const describe: IDescribe = {
     name,
     price: Math.round(price / packs) + " USD",
+    p_ratio: -percents.price + "%",
     coverage: Math.round(coverage * 0.0929) + " m2",
-    speed: speed.reduce(sum, 0) + " Mbps",
+    c_ratio: percents.coverage + "%",
+    speed: `${speed.reduce(sum, 0)} (${speed}) Mbps`,
+    s_ratio: percents.speed + "%",
     features,
     value: 0,
   };
-  const describe: IDescribe = {
-    name,
-    price: `${raw.price} (${-percents.price}%)`,
-    coverage: `${raw.coverage} (${percents.coverage}%)`,
-    speed: `${raw.speed} (${speed}) (${percents.speed}%)`,
-    raw,
-  };
-  Object.defineProperty(raw, "value", {
+
+  Object.defineProperty(describe, "value", {
     value: Object.values({
       ...percents,
       speed: getPercent(
@@ -40,10 +37,6 @@ const decosDescribed = decos.reduce((allDecos, deco) => {
         Math.min(MAX_ISP_SPEED, speed.reduce(sum, 0))
       ),
     }).reduce(sum, 0),
-    enumerable: false,
-  });
-  Object.defineProperty(describe, "raw", {
-    value: raw,
     enumerable: false,
   });
 
@@ -55,9 +48,9 @@ console.table(decosDescribed);
 console.log(
   "The best for buck Deco is",
   decosDescribed.reduce((curr, deco) => {
-    if (deco.raw.value > curr.value) {
-      return deco.raw;
+    if (deco.value > curr.value) {
+      return deco;
     }
     return curr;
-  }, decosDescribed[0].raw)
+  }, decosDescribed[0])
 );

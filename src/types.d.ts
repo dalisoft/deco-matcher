@@ -32,6 +32,8 @@ export interface IRaw {
   value: number;
 }
 
-export interface IDescribe extends Omit<IRaw, "features" | "value"> {
-  raw: IRaw;
+export interface IDescribe extends IRaw {
+  p_ratio: string;
+  c_ratio: string;
+  s_ratio: string;
 }
